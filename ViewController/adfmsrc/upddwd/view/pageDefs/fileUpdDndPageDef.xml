@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.10.8" id="fileUpdDndPageDef"
+                Package="upddwd.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="FileUpdDwn1" RangeSize="25" DataControl="fileUpdDndAMDataControl" id="FileUpdDwn1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="FileUpdDwn1Iterator" id="FileUpdDwn1">
+      <nodeDefinition DefName="upddwd.model.view.FileUpdDwnVO" Name="FileUpdDwn10">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="Path"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="setFileData" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setFileData"
+                  IsViewObjectMethod="false" DataControl="fileUpdDndAMDataControl"
+                  InstanceName="data.fileUpdDndAMDataControl.dataProvider"
+                  ReturnName="data.fileUpdDndAMDataControl.methodResults.setFileData_fileUpdDndAMDataControl_dataProvider_setFileData_result">
+      <NamedData NDName="name" NDType="java.lang.String"/>
+      <NamedData NDName="path" NDType="java.lang.String"/>
+      <NamedData NDName="contTyp" NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="FileUpdDwn1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" DataControl="fileUpdDndAMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>

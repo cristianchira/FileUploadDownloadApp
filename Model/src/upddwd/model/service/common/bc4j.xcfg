@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="upddwd.model.service.fileUpdDndAM">
+      <AppModuleConfig name="fileUpdDndAMLocal" jbo.project="upddwd.model.Model" ApplicationName="upddwd.model.service.fileUpdDndAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="upddwd.model.service.fileUpdDndAM"/>
+         <Custom ns0:JDBCDataSource="java:comp/env/jdbc/HRConDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="fileUpdDndAMShared" jbo.project="upddwd.model.Model" ApplicationName="upddwd.model.service.fileUpdDndAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="upddwd.model.service.fileUpdDndAM"/>
+         <Custom ns0:JDBCDataSource="java:comp/env/jdbc/HRConDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

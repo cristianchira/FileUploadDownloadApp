@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="fileUpdDnd.jspx" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx" id="pt1">
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl1" layout="vertical">
+                        <af:inputFile label="Select" id="if1"
+                                      valueChangeListener="#{viewScope.FileUploadDownloadBean.uploadFileVCE}"
+                                      autoSubmit="true"/>
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:panelCollection id="pc1" inlineStyle="width:inherit;">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="statusbar"/>
+                            <af:table value="#{bindings.FileUpdDwn1.collectionModel}" var="row"
+                                      rows="#{bindings.FileUpdDwn1.rangeSize}"
+                                      emptyText="#{bindings.FileUpdDwn1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="1"
+                                      selectedRowKeys="#{bindings.FileUpdDwn1.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.FileUpdDwn1.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.FileUpdDwn1.rangeSize}" id="t1"
+                                      autoHeightRows="5" width="900" summary="File table" partialTriggers="l2">
+                                <af:column sortProperty="#{bindings.FileUpdDwn1.hints.FileName.name}" sortable="true"
+                                           headerText="#{bindings.FileUpdDwn1.hints.FileName.label}" id="c1"
+                                           width="200">
+                                    <af:inputText value="#{row.bindings.FileName.inputValue}"
+                                                  label="#{bindings.FileUpdDwn1.hints.FileName.label}"
+                                                  required="#{bindings.FileUpdDwn1.hints.FileName.mandatory}"
+                                                  columns="#{bindings.FileUpdDwn1.hints.FileName.displayWidth}"
+                                                  maximumLength="#{bindings.FileUpdDwn1.hints.FileName.precision}"
+                                                  shortDesc="#{bindings.FileUpdDwn1.hints.FileName.tooltip}" id="it1"
+                                                  readOnly="true" contentStyle="color:red;">
+                                        <f:validator binding="#{row.bindings.FileName.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.FileUpdDwn1.hints.Path.name}" sortable="true"
+                                           headerText="#{bindings.FileUpdDwn1.hints.Path.label}" id="c2" width="250">
+                                    <af:inputText value="#{row.bindings.Path.inputValue}"
+                                                  label="#{bindings.FileUpdDwn1.hints.Path.label}"
+                                                  required="#{bindings.FileUpdDwn1.hints.Path.mandatory}"
+                                                  columns="#{bindings.FileUpdDwn1.hints.Path.displayWidth}"
+                                                  maximumLength="#{bindings.FileUpdDwn1.hints.Path.precision}"
+                                                  shortDesc="#{bindings.FileUpdDwn1.hints.Path.tooltip}" id="it2"
+                                                  readOnly="true"
+                                                  binding="#{viewScope.FileUploadDownloadBean.pathBind}">
+                                        <f:validator binding="#{row.bindings.Path.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column id="c3">
+                                    <af:link text="Download" id="l1">
+                                        <af:fileDownloadActionListener filename="#{row.bindings.FileName.inputValue}"
+                                                                       method="#{viewScope.FileUploadDownloadBean.downloadFileListener}"/>
+                                    </af:link>
+                                </af:column>
+                               <af:column id="c4">
+                                    <af:link actionListener="#{viewScope.FileUploadDownloadBean.del}" text="Delete"
+                                             disabled="#{!bindings.Delete.enabled}" id="l2"/>
+                                </af:column>  
+                            </af:table>
+                        </af:panelCollection>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="header">
+                    <af:outputText value="This is start" id="ot1"/>
+                </f:facet>
+                <f:facet name="end"/>
+                <f:facet name="start"/>
+                <f:facet name="branding"/>
+                <f:facet name="copyright"/>
+                <f:facet name="status"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>
